@@ -139,6 +139,7 @@ function SessionHandler (db) {
                     }
                 }
                 console.log('Just before starting the session: with');
+                console.log("user['_id']: " + user['_id']);
                 sessions.startSession(user['_id'], function(err, session_id) {
                     "use strict";
 

@@ -32,7 +32,7 @@ function UsersDAO(db) {
             if (err)
                 return callback(err, null);
             console.log("Created user");
-            callback(err, usr);
+            callback(err, user);
         });
     }
 

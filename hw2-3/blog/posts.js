@@ -32,7 +32,7 @@ function PostsDAO(db) {
             if (err)
                 return callback(err, null);
             console.log("Created post");
-            callback(err, pst);
+            callback(err, permalink);
         });
     }
 
@@ -84,8 +84,18 @@ function PostsDAO(db) {
             comment['email'] = email
         }
 
-        // hw3.3 TODO
-        callback(Error("addComment Not Yet Implemented!"), null);
+        var query = { 'permalink': permalink };
+        posts.findOne(query, function (err, post) {
+            "use strict";
+            if (err) return callback(err, null);
+            query['_id'] = post['_id'];
+            post.comments.push(comment);
+            posts.update(query, post, function (err, updated) {
+                if (err) return callback(err, null);
+                callback(err, post);
+            })
+            
+        });
     }
 }
 

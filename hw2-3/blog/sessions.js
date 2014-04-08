@@ -21,6 +21,8 @@ function SessionsDAO(db) {
         var random = Math.random().toString();
         var session_id = crypto.createHash('sha1').update(current_date + random).digest('hex');
 
+        console.log('here username is always null:');
+        console.log(username);
         // Create session document
         var session = {'username': username, '_id': session_id}
 
